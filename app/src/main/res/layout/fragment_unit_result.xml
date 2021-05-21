@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@{myInstance::onClick}"
-            android:text="OK" />
+            android:text="@string/selectNG" />
 
         <Button
             android:id="@+id/btnNG"
@@ -29,6 +29,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@{myInstance::onClick}"
-            android:text="NG" />
+            android:text="@string/selectNG" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

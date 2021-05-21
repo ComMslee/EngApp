@@ -29,6 +29,12 @@
         <action
             android:id="@+id/action_mainFragment_to_diskFragment"
             app:destination="@id/diskFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_BTFragment"
+            app:destination="@id/BTFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_LVDSFragment"
+            app:destination="@id/LVDSFragment" />
     </fragment>
     <fragment
         android:id="@+id/dipSwitchFragment"
@@ -45,11 +51,7 @@
     <fragment
         android:id="@+id/LVDSFragment"
         android:name="com.litbig.engapp.testcase.LVDSFragment"
-        android:label="LVDSFragment" >
-        <action
-            android:id="@+id/action_LVDSFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        android:label="LVDSFragment" />
     <fragment
         android:id="@+id/micFragment"
         android:name="com.litbig.engapp.testcase.MicFragment"
@@ -63,5 +65,10 @@
         android:name="com.litbig.engapp.testcase.WiFiFragment"
         android:label="WiFiFragment" />
     <action android:id="@+id/action_global_mainFragment" app:destination="@id/mainFragment" />
+    <fragment
+        android:id="@+id/BTFragment"
+        android:name="com.litbig.engapp.testcase.BTFragment"
+        android:label="fragment_bt"
+        tools:layout="@layout/fragment_tc_bt" />
 
 </navigation>

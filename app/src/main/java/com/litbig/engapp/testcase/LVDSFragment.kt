@@ -35,7 +35,7 @@ class LVDSFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_l_v_d_s, container, false)
+        return inflater.inflate(R.layout.fragment_tc_lvds, container, false)
     }
 
     companion object {

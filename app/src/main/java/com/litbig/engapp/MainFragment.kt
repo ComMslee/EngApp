@@ -1,5 +1,6 @@
 package com.litbig.engapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.litbig.engapp.databinding.FragmentMainBinding
+import com.litbig.engapp.utils.TestManager
+import org.koin.android.ext.android.inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [MainFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MainFragment : Fragment() {
+class MainFragment() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -32,6 +35,8 @@ class MainFragment : Fragment() {
         }
     }
 
+    val testManager: TestManager by inject()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,13 +48,36 @@ class MainFragment : Fragment() {
     }
 
     fun onClick(view: View) {
-        when(view){
-            binding.btnGPS -> findNavController().navigate(R.id.action_mainFragment_to_gpsFragment)
+        var action: Int = 0
+        when (view) {
+            binding.btnGPS -> action = R.id.action_mainFragment_to_gpsFragment
+            binding.btnMic -> action = R.id.action_mainFragment_to_micFragment
+            binding.btnSpeaker -> action = R.id.action_mainFragment_to_speakerFragment
+            binding.btnDisk -> action = R.id.action_mainFragment_to_diskFragment
+            binding.btnWiFi -> action = R.id.action_mainFragment_to_wiFiFragment
+            binding.btnBT -> action = R.id.action_mainFragment_to_BTFragment
+            binding.btnLVDS -> action = R.id.action_mainFragment_to_LVDSFragment
+            binding.btnDipSwitch -> action = R.id.action_mainFragment_to_dipSwitchFragment
+        }
+        if (action > 0) {
+            findNavController().navigate(action)
         }
     }
 
     fun endTest() {
+        if (testManager.bMesterClear) {
+            Intent("android.intent.action.MASTER_CLEAR").apply {
+                setPackage("android")
+                addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
+                putExtra("android.intent.extra.REASON", "MasterClearConfirm")
+                putExtra("android.intent.extra.WIPE_EXTERNAL_STORAGE", true)
+                activity?.let {
+                    it.sendBroadcast(this)
+                }
+            }
+        } else {
 
+        }
     }
 
     companion object {

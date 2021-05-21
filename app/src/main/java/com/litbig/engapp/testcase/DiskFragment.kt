@@ -35,7 +35,7 @@ class DiskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_disk, container, false)
+        return inflater.inflate(R.layout.fragment_tc_disk, container, false)
     }
 
     companion object {

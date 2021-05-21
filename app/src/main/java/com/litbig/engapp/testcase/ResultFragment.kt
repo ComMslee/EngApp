@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.litbig.engapp.R
-import com.litbig.engapp.databinding.FragmentMainBinding
-import com.litbig.engapp.databinding.FragmentResultBinding
+import com.litbig.engapp.databinding.FragmentUnitResultBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +24,7 @@ class ResultFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    lateinit var binding: FragmentResultBinding
+    lateinit var binding: FragmentUnitResultBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -38,7 +37,7 @@ class ResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentResultBinding.inflate(inflater, container, false)
+        binding = FragmentUnitResultBinding.inflate(inflater, container, false)
         binding.myInstance = this
         return binding.root
     }
