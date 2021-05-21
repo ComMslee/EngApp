@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main.xml"
+    app:startDestination="@id/mainFragment">
+
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.litbig.engapp.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_micFragment"
+            app:destination="@id/micFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_dipSwitchFragment"
+            app:destination="@id/dipSwitchFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_gpsFragment"
+            app:destination="@id/gpsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_speakerFragment"
+            app:destination="@id/speakerFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_wiFiFragment"
+            app:destination="@id/wiFiFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_diskFragment"
+            app:destination="@id/diskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dipSwitchFragment"
+        android:name="com.litbig.engapp.testcase.DipSwitchFragment"
+        android:label="DipSwitchFragment" />
+    <fragment
+        android:id="@+id/diskFragment"
+        android:name="com.litbig.engapp.testcase.DiskFragment"
+        android:label="DiskFragment" />
+    <fragment
+        android:id="@+id/gpsFragment"
+        android:name="com.litbig.engapp.testcase.GpsFragment"
+        android:label="GpsFragment" />
+    <fragment
+        android:id="@+id/LVDSFragment"
+        android:name="com.litbig.engapp.testcase.LVDSFragment"
+        android:label="LVDSFragment" >
+        <action
+            android:id="@+id/action_LVDSFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/micFragment"
+        android:name="com.litbig.engapp.testcase.MicFragment"
+        android:label="MicFragment" />
+    <fragment
+        android:id="@+id/speakerFragment"
+        android:name="com.litbig.engapp.testcase.SpeakerFragment"
+        android:label="SpeakerFragment" />
+    <fragment
+        android:id="@+id/wiFiFragment"
+        android:name="com.litbig.engapp.testcase.WiFiFragment"
+        android:label="WiFiFragment" />
+    <action android:id="@+id/action_global_mainFragment" app:destination="@id/mainFragment" />
+
+</navigation>
