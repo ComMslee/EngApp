@@ -7,7 +7,7 @@ open class TCBaseFragment : Fragment(){
     fun setMode(id: Int, mode: String) {
         childFragmentManager.findFragmentById(id)?.let { resultfragment ->
             if (resultfragment is ResultFragment) {
-                resultfragment.setMode(TestManager.GPS)
+                resultfragment.setMode(mode)
             }
         }
     }

@@ -20,7 +20,7 @@ class DipSwitchFragment : TCBaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTcDipSwitchBinding.inflate(inflater, container, false)
-        setMode(binding.result.id, TestManager.GPS)
+        setMode(binding.result.id, TestManager.DIP)
         return binding.root
     }
 }
