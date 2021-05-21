@@ -1,6 +1,7 @@
 package com.litbig.engapp
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +12,9 @@ import com.litbig.engapp.databinding.FragmentMainBinding
 import com.litbig.engapp.utils.TestManager
 import org.koin.android.ext.android.inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MainFragment() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -36,6 +30,7 @@ class MainFragment() : Fragment() {
     }
 
     val testManager: TestManager by inject()
+    val map = mutableMapOf<String, View>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +39,26 @@ class MainFragment() : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentMainBinding.inflate(inflater, container, false)
         binding.myInstance = this
+        TestManager.apply {
+            map.put(this.GPS, binding.btnGPS)
+            map.put(this.MIC, binding.btnMic)
+            map.put(this.SPEAKER, binding.btnSpeaker)
+            map.put(this.DISK, binding.btnDisk)
+            map.put(this.WIFI, binding.btnWiFi)
+            map.put(this.BT, binding.btnBT)
+            map.put(this.LVDS, binding.btnLVDS)
+            map.put(this.DIP, binding.btnDipSwitch)
+        }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        for(item in map){
+            testManager.map.get(item.key)?.let {
+                item.value.setBackgroundColor(if (it) Color.GREEN else Color.RED)
+            }
+        }
     }
 
     fun onClick(view: View) {
@@ -81,15 +95,6 @@ class MainFragment() : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             MainFragment().apply {

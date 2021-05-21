@@ -24,8 +24,8 @@
             android:orientation="vertical"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout2"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
@@ -37,26 +37,26 @@
 
                 <Button
                     android:id="@+id/btnGPS"
-                    android:onClick="@{myInstance::onClick}"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
                     android:text="GPS" />
 
                 <Button
                     android:id="@+id/btnMic"
-                    android:onClick="@{myInstance::onClick}"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
                     android:text="MIC" />
 
                 <Button
                     android:id="@+id/btnSpeaker"
-                    android:onClick="@{myInstance::onClick}"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
                     android:text="Speaker" />
             </LinearLayout>
 
@@ -68,26 +68,26 @@
 
                 <Button
                     android:id="@+id/btnDisk"
-                    android:onClick="@{myInstance::onClick}"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
                     android:text="Disk" />
 
                 <Button
                     android:id="@+id/btnWiFi"
                     android:layout_width="0dp"
-                    android:onClick="@{myInstance::onClick}"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
                     android:text="WIFI" />
 
                 <Button
                     android:id="@+id/btnBT"
                     android:layout_width="0dp"
-                    android:onClick="@{myInstance::onClick}"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
                     android:text="BT" />
             </LinearLayout>
 
@@ -100,24 +100,24 @@
                 <Button
                     android:id="@+id/btnLVDS"
                     android:layout_width="0dp"
-                    android:onClick="@{myInstance::onClick}"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
                     android:text="LVDS" />
 
                 <Button
                     android:id="@+id/btnDipSwitch"
                     android:layout_width="0dp"
-                    android:onClick="@{myInstance::onClick}"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
                     android:text="DIP Switch" />
 
                 <Button
-                    android:onClick="@{myInstance::onClick}"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}" />
             </LinearLayout>
         </LinearLayout>
 
@@ -129,7 +129,7 @@
             android:orientation="vertical"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
