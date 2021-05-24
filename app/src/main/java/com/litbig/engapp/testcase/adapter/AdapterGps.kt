@@ -8,9 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.litbig.engapp.R
 import com.litbig.engapp.utils.ModelGps
-import java.lang.String
 
-class AdapterGps(private val mContext: Context, private val mData : ArrayList<ModelGps>) : BaseAdapter() {
+class AdapterGps(private val mContext: Context, private val mData: ArrayList<ModelGps>) :
+    BaseAdapter() {
     var mLayoutInflater: LayoutInflater = LayoutInflater.from(mContext)
 
     override fun getCount(): Int {
@@ -27,17 +27,18 @@ class AdapterGps(private val mContext: Context, private val mData : ArrayList<Mo
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val view: View = mLayoutInflater.inflate(R.layout.gps_model, null)
-        val prn = view.findViewById<View>(R.id.gps_model_prn) as TextView
-        val snr = view.findViewById<View>(R.id.gps_model_snr) as TextView
         try {
-            prn.setText(String.valueOf(mData[position].prn))
-            val nSnr = mData[position].snr.toInt()
-            snr.text = nSnr.toString()
-            if (nSnr > 20) {
-                snr.background = mContext.resources.getDrawable(R.drawable.bg_fac_success)
-            } else {
-                snr.background = mContext.resources.getDrawable(R.drawable.bg_fac_text)
-            }
+            val prn: TextView = view.findViewById(R.id.gps_model_prn)
+            val snr: TextView = view.findViewById(R.id.gps_model_snr)
+
+            prn.text = mData[position].prn.toString()
+            snr.text = mData[position].snr.toInt().apply {
+                var color = R.drawable.bg_fac_text
+                if (this > 20) {
+                    color = R.drawable.bg_fac_success
+                }
+                snr.background = mContext.resources.getDrawable(color)
+            }.toString()
         } catch (e: Exception) {
             e.printStackTrace()
         }

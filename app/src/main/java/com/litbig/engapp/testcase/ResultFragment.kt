@@ -35,6 +35,10 @@ class ResultFragment : Fragment() {
             binding.btnOK -> bPass = true
             binding.btnNG -> bPass = false
         }
+        selectTest(bPass)
+    }
+
+    fun selectTest(bPass: Boolean) {
         testManager.map.put(strMode, bPass)
         findNavController().navigate(R.id.action_global_mainFragment)
     }
