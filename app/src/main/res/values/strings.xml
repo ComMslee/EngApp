@@ -64,6 +64,8 @@
     <string name="fact_speaker_stop">재생/정지 (정지됨)</string>
     <string name="fact_speaker_left">좌</string>
     <string name="fact_speaker_right">우</string>
+    <string name="fact_speaker_min">최소</string>
+    <string name="fact_speaker_max">최대</string>
 
     <string name="fact_gps_tip">- GPS 안테나를 연결합니다.\n- 위성의 상태에 따라 특정 기준 이상의 값이 되면 색상이 변경됩니다.\n- FIXED라고 표시되면 PASS입니다.</string>
     <string name="fact_gps_info">GPS INFO</string>
