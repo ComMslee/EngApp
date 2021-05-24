@@ -7,4 +7,22 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!-- Common Color -->
+    <color name="factory_green">#00dd00</color>
+    <color name="factory_red">#dd0000</color>
+
+    <!-- UI Item Color -->
+    <color name="btn_text_normal">@color/white</color>
+    <color name="btn_text_success">@color/factory_green</color>
+    <color name="btn_text_fail">@color/factory_red</color>
+
+    <color name="btn_bg_black">@color/black</color>
+    <color name="btn_bg_clickable">#808080</color>
+    <color name="btn_bg_Success">@color/factory_green</color>
+    <color name="btn_bg_fail">@color/factory_red</color>
+    <color name="btn_bg_appstart">#0000dd</color>
+
+    <color name="btn_bg_clickselect">#33808080</color>
 </resources>

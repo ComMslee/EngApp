@@ -6,4 +6,78 @@
 
     <string name="selectPass">Pass</string>
     <string name="selectNG">NG</string>
+
+    <!-- factory -->
+    <string name="fact_main_Info" formatted="false">
+		+S/W\n %s\n
+		+MCU\n %s\n
+		+Serial\n %s\n
+		+CasID\n %s\n
+	</string>
+
+    <string name="fact_main_info2">
+		+기능 테스트를 하면 종료 시 공장 초기화를 합니다.\n\n
+		+모든 기능이 통과되면 자동으로 공장 초기화를 합니다.
+	</string>
+    <string name="fact_lcd_tip">- 색상확인 버튼을 선택합니다.\n- 빨, 초, 파, 흰, 검 순서로 화면이 나오는지 확인합니다.\n- 화면밝기 슬라이드를 조작하며 화면의 밝기를 확인합니다.</string>
+    <string name="fact_touch_tip">- 터치 버튼을 선택합니다.\n- 5곳의 확인 버튼을 선택합니다.</string>
+    <string name="fact_storage_tip">- USB 저장장치를 연결합니다.</string>
+
+    <string name="fact_camera_tip">- 후방 카메라 영상이 나오는지 확인합니다.</string>
+
+    <string name="fact_hwkey_tip">- 전면부의 하드키를 누릅니다.</string>
+    <string name="fact_hwkey_jog00">JOG L</string>
+    <string name="fact_hwkey_jog01">JOG R</string>
+    <string name="fact_hwkey_home">HOME</string>
+    <string name="fact_hwkey_navi">NAVI</string>
+    <string name="fact_hwkey_radio">RADIO</string>
+    <string name="fact_hwkey_cam">CAM</string>
+    <string name="fact_hwkey_phone">PHONE</string>
+    <string name="fact_hwkey_chup">CH UP</string>
+    <string name="fact_hwkey_chdown">CH DOWN</string>
+    <string name="fact_hwkey_power">POWER</string>
+    <string name="fact_hwkey_sel">SEL</string>
+    <string name="fact_hwkey_left">LEFT</string>
+    <string name="fact_hwkey_right">RIGHT</string>
+    <string name="pressed">DOWN</string>
+    <string name="released">UP</string>
+
+    <string name="fact_hwkey_tune_up">TUNEUP</string>
+    <string name="fact_hwkey_tune_down">TUNEDOWN</string>
+
+    <string name="fact_radio_info">- 라디오 안테나를 연결합니다.\n- 라디오 실행 버튼을 선택합니다.\n- 순서대로 빨간 테두리 영역을 선택합니다.\n- 테스트 결과가 자동으로 표시됩니다.</string>
+    <string name="fact_radio_app">라디오 실행</string>
+    <string name="fact_radio_fm_scan">FM 채널 검색</string>
+    <string name="fact_radio_fm_seek">FM 채널 seek</string>
+    <string name="fact_radio_fm_preset">FM preset 채널</string>
+    <string name="fact_radio_am_scan">AM 채널 검색</string>
+    <string name="fact_radio_am_seek">AM 채널 seek</string>
+    <string name="fact_radio_am_preset">AM preset 채널</string>
+
+    <string name="fact_dmb_info">- DMB 안테나를 연결합니다.\n- DMB 실행 버튼을 선택합니다.\n- 순서대로 빨간 테두리 영역을 선택합니다.\n- 테스트 결과가 자동으로 표시됩니다.</string>
+    <string name="fact_dmb_app">DMB 실행</string>
+    <string name="fact_dmb_scan">DMB 채널 검색</string>
+    <string name="fact_dmb_change">DMB 채널 변경</string>
+
+    <string name="fact_speaker_info">- 좌/우 스피커를 연결합니다.\n- 재생/정지 버튼을 선택하고 소리 재생/정지가 되는지 확인합니다.\n- (재생중 상태에서) 슬라이드를 조작하며 좌/우 스피커 소리를 확인합니다.</string>
+    <string name="fact_speaker_playing">재생/정지 (재생중)</string>
+    <string name="fact_speaker_stop">재생/정지 (정지됨)</string>
+    <string name="fact_speaker_left">좌</string>
+    <string name="fact_speaker_right">우</string>
+
+    <string name="fact_gps_tip">- GPS 안테나를 연결합니다.\n- 위성의 상태에 따라 특정 기준 이상의 값이 되면 색상이 변경됩니다.\n- FIXED라고 표시되면 PASS입니다.</string>
+    <string name="fact_gps_info">GPS INFO</string>
+    <string name="fact_gps_sat">위성 :</string>
+    <string name="fact_gps_prn">PRN</string>
+    <string name="fact_gps_snr">SNR</string>
+
+    <string name="fact_signal_tip">- 외부 신호를 확인합니다.</string>
+    <string name="fact_signal_speed">스피드</string>
+    <string name="fact_signal_illumi">일루미</string>
+    <string name="fact_signal_mute">뮤트</string>
+    <string name="fact_signal_reargear">후방 기어</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+
+    <string name="fact_led_tip">- 버튼밝기 슬라이드를 조작하며 전면부의 버튼 밝기를 확인합니다.</string>
 </resources>

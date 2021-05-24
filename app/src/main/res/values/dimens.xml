@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="selectArea">200dp</dimen>
+
+    <dimen name="fac_text_normal_l">30dp</dimen>
+    <dimen name="fac_text_normal_m">25dp</dimen>
+    <dimen name="fac_text_normal_s">20dp</dimen>
+    <dimen name="fac_text_normal_ss">18dp</dimen>
+
+    <dimen name="fac_text_info_area">@dimen/fac_text_normal_ss</dimen>
+
+    <dimen name="fac_btn_height_l">100dp</dimen>
+    <dimen name="fac_btn_height_m">90dp</dimen>
+    <dimen name="fac_btn_height_s">70dp</dimen>
+</resources>
