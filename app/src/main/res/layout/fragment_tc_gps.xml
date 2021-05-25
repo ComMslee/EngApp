@@ -39,7 +39,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:gravity="left"
-                    android:text="3/10"
+                    android:text="-/-"
                     android:textColor="@color/btn_text_normal"
                     android:textSize="@dimen/fac_text_normal_m" />
 

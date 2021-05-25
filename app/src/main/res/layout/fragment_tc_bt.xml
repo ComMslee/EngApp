@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="myInstance"
+            type="com.litbig.engapp.testcase.BTFragment" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,11 +24,72 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textView"
+            <ToggleButton
+                android:id="@+id/btnOnOff"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="bt" />
+                android:layout_height="wrap_content"
+                android:onClick="@{myInstance::onClick}"
+                android:textOff="Off"
+                android:textOn="On"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linearLayoutCompat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnOnOff">
+
+                <TextView
+                    android:id="@+id/tvOn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_fac_text"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="On"
+                    android:textColor="@color/btn_text_normal"
+                    android:textSize="@dimen/fac_text_normal_m" />
+
+                <TextView
+                    android:id="@+id/tvOff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_fac_text"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="OFF"
+                    android:textColor="@color/btn_text_normal"
+                    android:textSize="@dimen/fac_text_normal_m" />
+
+                <TextView
+                    android:id="@+id/tvScan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_fac_text"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Scan"
+                    android:textColor="@color/btn_text_normal"
+                    android:textSize="@dimen/fac_text_normal_m" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <ListView
+                android:id="@+id/lvbt"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayoutCompat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnOnOff" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

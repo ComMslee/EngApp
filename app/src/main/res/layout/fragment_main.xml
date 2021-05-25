@@ -110,7 +110,8 @@
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="DIP Switch" />
+                    android:text="DIP Switch"
+                    android:visibility="invisible" />
 
                 <Button
                     android:id="@+id/btnLVDS"
@@ -118,8 +119,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
-                    android:visibility="invisible"
-                    android:onClick="@{myInstance::onClick}" />
+                    android:text="LVDS"
+                    android:onClick="@{myInstance::onClick}"
+                    android:visibility="invisible" />
 
                 <Button
                     android:layout_width="0dp"
