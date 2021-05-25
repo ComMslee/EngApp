@@ -1,5 +1,7 @@
 package com.litbig.engapp.utils
 
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import com.litbig.engapp.testcase.ResultFragment
 
@@ -15,8 +17,10 @@ open class TCBaseFragment : Fragment() {
     }
 
     fun selectTest(bPass: Boolean) {
-        this.resultFragment?.let {
-            it.selectTest(bPass)
-        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            this.resultFragment?.let {
+                it.selectTest(bPass)
+            }
+        }, 1000)
     }
 }
