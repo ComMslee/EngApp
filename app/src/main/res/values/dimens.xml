@@ -9,7 +9,7 @@
 
     <dimen name="fac_text_info_area">@dimen/fac_text_normal_ss</dimen>
 
-    <dimen name="fac_btn_height_l">100dp</dimen>
-    <dimen name="fac_btn_height_m">90dp</dimen>
-    <dimen name="fac_btn_height_s">70dp</dimen>
+    <dimen name="fac_btn_height_l">90dp</dimen>
+    <dimen name="fac_btn_height_m">70dp</dimen>
+    <dimen name="fac_btn_height_s">50dp</dimen>
 </resources>

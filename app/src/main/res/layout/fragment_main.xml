@@ -42,7 +42,8 @@
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="GPS" />
+                    android:text="GPS"
+                    android:textSize="@dimen/fac_text_normal_m" />
 
                 <Button
                     android:id="@+id/btnMic"
@@ -51,7 +52,8 @@
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="MIC" />
+                    android:text="MIC"
+                    android:textSize="@dimen/fac_text_normal_m" />
 
                 <Button
                     android:id="@+id/btnSpeaker"
@@ -60,7 +62,8 @@
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="Speaker" />
+                    android:text="Speaker"
+                    android:textSize="@dimen/fac_text_normal_m" />
             </LinearLayout>
 
             <LinearLayout
@@ -76,7 +79,8 @@
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="Disk" />
+                    android:text="Disk"
+                    android:textSize="@dimen/fac_text_normal_m" />
 
                 <Button
                     android:id="@+id/btnWiFi"
@@ -85,7 +89,8 @@
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="WIFI" />
+                    android:text="WIFI"
+                    android:textSize="@dimen/fac_text_normal_m" />
 
                 <Button
                     android:id="@+id/btnBT"
@@ -94,7 +99,8 @@
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="BT" />
+                    android:text="BT"
+                    android:textSize="@dimen/fac_text_normal_m" />
             </LinearLayout>
 
             <LinearLayout
@@ -111,6 +117,7 @@
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
                     android:text="DIP Switch"
+                    android:textSize="@dimen/fac_text_normal_m"
                     android:visibility="invisible" />
 
                 <Button
@@ -119,8 +126,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
-                    android:text="LVDS"
                     android:onClick="@{myInstance::onClick}"
+                    android:text="LVDS"
+                    android:textSize="@dimen/fac_text_normal_m"
                     android:visibility="invisible" />
 
                 <Button
@@ -129,26 +137,32 @@
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
+                    android:textSize="@dimen/fac_text_normal_m"
                     android:visibility="invisible" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="0dp"
-            android:gravity="bottom|end"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:onClick="@{()->myInstance.endTest()}"
-                android:text="Finish" />
+                android:text="Finish"
+                android:textSize="@dimen/fac_text_normal_m" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
