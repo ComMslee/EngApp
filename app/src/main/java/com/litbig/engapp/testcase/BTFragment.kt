@@ -40,8 +40,8 @@ class BTFragment : TCBaseFragment() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter().apply {
             if (isEnabled) {
                 startDiscovery()
-                binding.btnOnOff.isChecked = true
             }
+            binding.btnOnOff.isChecked = isEnabled
         }
 
         context?.let {
@@ -98,7 +98,8 @@ class BTFragment : TCBaseFragment() {
                     if (state == BluetoothAdapter.STATE_ON) {
                         mBluetoothAdapter?.let {
                             it.startDiscovery()
-                            binding.tvOn.background = resources.getDrawable(R.drawable.bg_fac_success)
+                            binding.tvOn.background =
+                                resources.getDrawable(R.drawable.bg_fac_success)
                         }
                     } else if (state == BluetoothAdapter.STATE_OFF) {
                         binding.lvbt.setAdapter(null)
