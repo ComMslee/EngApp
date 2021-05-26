@@ -92,6 +92,7 @@ class MainFragment() : Fragment() {
         } else {
 
         }
+        activity?.finish()
     }
 
     companion object {

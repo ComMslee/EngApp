@@ -20,7 +20,8 @@ import kotlin.collections.ArrayList
 
 class GpsFragment : TCBaseFragment() {
     lateinit var binding: FragmentTcGpsBinding
-    var mLocationManager: LocationManager? = null
+    private var mLocationManager: LocationManager? = null
+    private val localListener = LocationListener { }
 
     @SuppressLint("MissingPermission")
     override fun onCreateView(
@@ -44,13 +45,11 @@ class GpsFragment : TCBaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mLocationManager?.let {
-            it.removeGpsStatusListener(listener)
-            it.removeUpdates(localListener)
+        mLocationManager?.apply {
+            removeGpsStatusListener(listener)
+            removeUpdates(localListener)
         }
     }
-
-    val localListener = LocationListener { }
 
     @SuppressLint("MissingPermission")
     val listener = GpsStatus.Listener { event ->
@@ -58,8 +57,8 @@ class GpsFragment : TCBaseFragment() {
             val model: ArrayList<ModelGps> = ArrayList()
             var satellites = 0
             var satellitesInFix = 0
-            mLocationManager?.let {
-                it.getGpsStatus(null)?.satellites?.let { gpsItems ->
+            mLocationManager?.let { manager ->
+                manager.getGpsStatus(null)?.satellites?.let { gpsItems ->
                     for (sat in gpsItems) {
                         if (sat.usedInFix()) {
                             satellitesInFix++
@@ -76,11 +75,11 @@ class GpsFragment : TCBaseFragment() {
                     }
                 }
 
-                binding.gpsList?.let {
-                    it.adapter =
+                binding.gpsList.let { list ->
+                    list.adapter =
                         context?.let { context -> AdapterGps(context.applicationContext, model) }
                 }
-                val timeToFirstFix = it.getGpsStatus(null)!!.timeToFirstFix
+                val timeToFirstFix = manager.getGpsStatus(null)!!.timeToFirstFix
                 if (timeToFirstFix > 0) {
                     binding.gpsFirstFix?.apply {
                         text = "FIXED"

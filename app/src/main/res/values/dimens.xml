@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="selectArea">200dp</dimen>
+    <dimen name="selectArea">220dp</dimen>
 
     <dimen name="fac_text_normal_l">30dp</dimen>
     <dimen name="fac_text_normal_m">25dp</dimen>

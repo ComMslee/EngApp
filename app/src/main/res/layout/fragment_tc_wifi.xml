@@ -52,7 +52,7 @@
                     android:background="@drawable/bg_fac_text"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="On"
+                    android:text="ON"
                     android:textColor="@color/btn_text_normal"
                     android:textSize="@dimen/fac_text_normal_m" />
 

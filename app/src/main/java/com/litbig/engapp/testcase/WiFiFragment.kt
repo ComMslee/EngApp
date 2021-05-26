@@ -27,7 +27,7 @@ class WiFiFragment : TCBaseFragment() {
     lateinit var wifiManager: WifiManager
     var timer: Timer? = null
 
-    fun connectedSSID() = run {
+    private fun connectedSSID() = run {
         if (wifiManager != null) {
             wifiManager.connectionInfo.ssid.replace(
                 "\"", ""
@@ -49,8 +49,8 @@ class WiFiFragment : TCBaseFragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentTcWifiBinding.inflate(inflater, container, false)
-        setMode(binding.result.id, TestManager.WIFI)
         binding.myInstance = this
+        setMode(binding.result.id, TestManager.WIFI)
 
         binding.btnOnOff.isChecked = wifiManager.isWifiEnabled
 
@@ -76,7 +76,6 @@ class WiFiFragment : TCBaseFragment() {
             filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
             it.registerReceiver(wifiReciver, filter)
         }
-
         return binding.root
     }
 
@@ -92,9 +91,7 @@ class WiFiFragment : TCBaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        context?.let {
-            it.unregisterReceiver(wifiReciver)
-        }
+        context?.unregisterReceiver(wifiReciver)
     }
 
     fun startTimer() {
@@ -110,11 +107,11 @@ class WiFiFragment : TCBaseFragment() {
         timer = null
     }
 
-    fun startScan() {
+    private fun startScan() {
         wifiManager.startScan()
     }
 
-    val wifiReciver = object : BroadcastReceiver() {
+    private val wifiReciver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             intent?.apply {
                 when (this.action) {
@@ -159,8 +156,8 @@ class WiFiFragment : TCBaseFragment() {
 
     fun scanSuccess() {    // Wifi검색 성공
         synchronized(this) {
-            binding.rvWifi.adapter?.let {
-                (it as WifiAdapter).apply {
+            binding.rvWifi.adapter?.let { adapter ->
+                (adapter as WifiAdapter).apply {
                     val results = wifiManager.scanResults.toMutableList()
                     val filterList = mutableListOf<ScanResult>()
                     for (item in results) {
@@ -202,11 +199,7 @@ class WiFiFragment : TCBaseFragment() {
         when (view) {
             binding.btnOnOff -> {
                 wifiManager?.let {
-                    if (binding.btnOnOff.isChecked) {
-                        it.isWifiEnabled = true
-                    } else {
-                        it.isWifiEnabled = false
-                    }
+                    it.isWifiEnabled = binding.btnOnOff.isChecked
                 }
             }
         }

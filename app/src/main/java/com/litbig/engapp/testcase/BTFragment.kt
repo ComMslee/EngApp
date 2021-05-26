@@ -82,14 +82,12 @@ class BTFragment : TCBaseFragment() {
                         intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
                     mDeviceList.add("${device!!.name} :: ${device.address}")
                     Log.i("BT", "${device.name} ${device.address}")
-                    binding.lvbt.setAdapter(
-                        context?.let {
-                            ArrayAdapter(
-                                it,
-                                android.R.layout.simple_list_item_1, mDeviceList
-                            )
-                        }
-                    )
+                    binding.lvbt.adapter = context?.let {
+                        ArrayAdapter(
+                            it,
+                            android.R.layout.simple_list_item_1, mDeviceList
+                        )
+                    }
                     binding.tvScan.background = resources.getDrawable(R.drawable.bg_fac_success)
                 }
                 BluetoothAdapter.ACTION_STATE_CHANGED -> {
@@ -102,7 +100,7 @@ class BTFragment : TCBaseFragment() {
                                 resources.getDrawable(R.drawable.bg_fac_success)
                         }
                     } else if (state == BluetoothAdapter.STATE_OFF) {
-                        binding.lvbt.setAdapter(null)
+                        binding.lvbt.adapter = null
                         mDeviceList.clear()
                         binding.tvOff.background = resources.getDrawable(R.drawable.bg_fac_success)
                     }

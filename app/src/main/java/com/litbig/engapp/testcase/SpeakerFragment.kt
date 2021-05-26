@@ -3,7 +3,6 @@ package com.litbig.engapp.testcase
 import android.content.Context
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.media.MediaPlayer.OnPreparedListener
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +28,7 @@ class SpeakerFragment : TCBaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentTcSpeakerBinding.inflate(inflater, container, false)
         setMode(binding.result.id, TestManager.SPEAKER)
@@ -59,29 +58,18 @@ class SpeakerFragment : TCBaseFragment() {
         stopPlayer()
     }
 
-    fun stopPlayer() {
-        mPlayer?.let { player ->
-            if (player.isPlaying()) {
-                binding.btnSpeakerPlay.text = getResources().getString(R.string.fact_speaker_stop)
-                player.stop()
-            }
-            player.release()
-        }
-        mPlayer = null
-    }
-
-    fun onClick(view: View) {
+    private fun playPlayer() {
         if (null == mPlayer) {
             mPlayer = MediaPlayer()
             mPlayer?.let { player ->
-                player.setOnPreparedListener(OnPreparedListener {
-                    it.setLooping(true)
+                player.setOnPreparedListener {
+                    it.isLooping = true
                     it.start()
                     binding.btnSpeakerPlay.text = resources.getString(R.string.fact_speaker_playing)
-                })
+                }
                 try {
                     context?.let {
-                        it.getAssets().openFd("remembrance.mp3")
+                        it.assets.openFd("remembrance.mp3")
                     }?.let {
                         player.setDataSource(
                             it.fileDescriptor,
@@ -95,12 +83,29 @@ class SpeakerFragment : TCBaseFragment() {
                     e.printStackTrace()
                 }
             }
-        } else {
-            stopPlayer()
         }
     }
 
-    val seekbarListener = object : SeekBar.OnSeekBarChangeListener {
+    private fun stopPlayer() {
+        mPlayer?.let { player ->
+            if (player.isPlaying) {
+                binding.btnSpeakerPlay.text = resources.getString(R.string.fact_speaker_stop)
+                player.stop()
+            }
+            player.release()
+        }
+        mPlayer = null
+    }
+
+    fun onClick(view: View) {
+        mPlayer?.apply {
+            stopPlayer()
+        } ?: run {
+            playPlayer()
+        }
+    }
+
+    private val seekbarListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             when (seekBar) {
                 binding.factorySubSpeakerSeekbar -> {
