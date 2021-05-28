@@ -77,30 +77,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2">
 
                 <TextView
-                    android:id="@+id/tvOn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_fac_text"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="ON"
-                    android:textColor="@color/btn_text_normal"
-                    android:textSize="@dimen/fac_text_normal_m" />
-
-                <TextView
-                    android:id="@+id/tvOff"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_fac_text"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="OFF"
-                    android:textColor="@color/btn_text_normal"
-                    android:textSize="@dimen/fac_text_normal_m" />
-
-                <TextView
                     android:id="@+id/tvSound"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

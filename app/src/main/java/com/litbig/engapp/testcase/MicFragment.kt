@@ -17,10 +17,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.io.File
 
 class MicFragment : TCBaseFragment() {
     lateinit var binding: FragmentTcMicBinding
 
+    private val PATH = Environment.getExternalStorageDirectory().path + "/text.mp3"
     private var mediaRecorder: MediaRecorder? = null
     private var mPlayer: MediaPlayer? = null
 
@@ -41,12 +43,11 @@ class MicFragment : TCBaseFragment() {
         }!!
 
         binding.btnRec.isEnabled = bMic
-        binding.btnPlay.isEnabled = false
+        binding.btnPlay.isEnabled = File(PATH).isAbsolute
 
         CoroutineScope(Main).launch {
             val par = 100.0f / 32768.0f
             while (true) {
-                Log.e("mslee", "life")
                 delay(200L)
                 mediaRecorder?.apply {
                     binding.pbAmp.progress = (maxAmplitude * par).toInt()
@@ -79,13 +80,17 @@ class MicFragment : TCBaseFragment() {
                     mediaRecorder = null
                     binding.pbAmp.progress = 0
                     binding.btnRec.text = "REC"
+                    if (File(PATH).isAbsolute) {
+                        binding.btnPlay.isEnabled = true
+                    }
                 } ?: run {
+                    binding.btnPlay.isEnabled = false
                     binding.btnRec.text = "STOP"
                     mediaRecorder = MediaRecorder().apply {
                         setAudioSource(MediaRecorder.AudioSource.MIC)
                         setOutputFormat(MediaRecorder.OutputFormat.AMR_NB)
                         setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-                        setOutputFile(Environment.getExternalStorageDirectory().path + "/text.mp3")
+                        setOutputFile(PATH)
                         try {
                             prepare()
                             start()
@@ -115,17 +120,8 @@ class MicFragment : TCBaseFragment() {
                     binding.btnPlay.text = resources.getString(R.string.fact_speaker_playing)
                 }
                 try {
-                    context?.let {
-                        it.assets.openFd("remembrance.mp3")
-                    }?.let {
-                        player.setDataSource(
-                            it.fileDescriptor,
-                            it.startOffset,
-                            it.length
-                        )
-                        it.close()
-                        player.prepareAsync()
-                    }
+                    player.setDataSource(PATH)
+                    player.prepareAsync()
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
