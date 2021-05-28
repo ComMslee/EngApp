@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.wifi.ScanResult
 import android.net.wifi.SupplicantState
+import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.util.Log
@@ -195,12 +196,75 @@ class WiFiFragment : TCBaseFragment() {
     fun scanFailure() {    // Wifi검색 실패
     }
 
+    fun connectToAP(ssid: String, passkey: String) {
+        val scanResultList = wifiManager.scanResults
+        scanResultList.find {
+            it.SSID == ssid
+        }?.let {
+            val securityMode = getScanResultSecurity(it)
+            WifiConfiguration().apply {
+                if (securityMode.equals("OPEN", ignoreCase = true)) {
+                    this.SSID = "\"" + ssid + "\""
+                    this.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE)
+                    val res = wifiManager.addNetwork(this)
+                    wifiManager.enableNetwork(res, true)
+                    wifiManager.isWifiEnabled = true
+                } else if (securityMode.equals("WEP", ignoreCase = true)) {
+                    this.SSID = "\"" + ssid + "\""
+                    this.wepKeys[0] = "\"" + passkey + "\""
+                    this.wepTxKeyIndex = 0
+                    this.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE)
+                    this.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40)
+                    val res = wifiManager.addNetwork(this)
+                    val b = wifiManager.enableNetwork(res, true)
+                    wifiManager.isWifiEnabled = true
+                }
+                this.SSID = "\"" + ssid + "\""
+                this.preSharedKey = "\"" + passkey + "\""
+                this.hiddenSSID = true
+                this.status = WifiConfiguration.Status.ENABLED
+                this.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP)
+                this.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP)
+                this.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK)
+                this.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP)
+                this.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP)
+                this.allowedProtocols.set(WifiConfiguration.Protocol.RSN)
+                this.allowedProtocols.set(WifiConfiguration.Protocol.WPA)
+
+                //connect...
+                val res = wifiManager.addNetwork(this)
+                wifiManager.enableNetwork(res, true)
+                val changeHappen = wifiManager.saveConfiguration()
+                if (res != -1 && changeHappen) {
+                } else {
+                    //Log.d(TAG, "*** Change NOT happen");
+                }
+                wifiManager.isWifiEnabled = true
+            }
+        }
+    }
+
+    fun getScanResultSecurity(scanResult: ScanResult): String {
+        Log.i("test", "* getScanResultSecurity")
+        val cap = scanResult.capabilities
+        val securityModes = arrayOf("WEP", "PSK", "EAP")
+        for (i in securityModes.indices.reversed()) {
+            if (cap.contains(securityModes[i])) {
+                return securityModes[i]
+            }
+        }
+        return "OPEN"
+    }
+
     fun onClick(view: View) {
         when (view) {
             binding.btnOnOff -> {
                 wifiManager?.let {
                     it.isWifiEnabled = binding.btnOnOff.isChecked
                 }
+            }
+            binding.btnConnect -> {
+                connectToAP("LB_Guest_2.4G", "LBGuest4219!")
             }
         }
     }
