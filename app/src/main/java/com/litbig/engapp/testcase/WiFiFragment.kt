@@ -20,13 +20,16 @@ import com.litbig.engapp.testcase.adapter.OnItemClickListener
 import com.litbig.engapp.testcase.adapter.WifiAdapter
 import com.litbig.engapp.utils.TCBaseFragment
 import com.litbig.engapp.utils.TestManager
-import java.util.*
-import kotlin.concurrent.timer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class WiFiFragment : TCBaseFragment() {
     lateinit var binding: FragmentTcWifiBinding
     lateinit var wifiManager: WifiManager
-    var timer: Timer? = null
+    var job: Job? = null
 
     private fun connectedSSID() = run {
         if (wifiManager != null) {
@@ -82,12 +85,12 @@ class WiFiFragment : TCBaseFragment() {
     }
 
     override fun onResume() {
-        startTimer()
+        startJob()
         super.onResume()
     }
 
     override fun onPause() {
-        stopTimer()
+        stopJob()
         super.onPause()
     }
 
@@ -96,17 +99,24 @@ class WiFiFragment : TCBaseFragment() {
         context?.unregisterReceiver(wifiReciver)
     }
 
-    fun startTimer() {
-        stopTimer()
-        timer = timer(period = 7000) {
-            startScan()
-            Log.e("mslee", "call...")
+    fun startJob() {
+        if (job != null) {
+            job?.cancel()
         }
+        job = CoroutineScope(Main).launch {
+            while (true) {
+                startScan()
+                delay(10*1000)
+                Log.e("mslee", "startScan()!!")
+            }
+        }
+        job?.start()
     }
 
-    fun stopTimer() {
-        timer?.cancel()
-        timer = null
+    fun stopJob() {
+        Log.e("mslee", "stopTimer()!!")
+        job?.cancel()
+        job = null
     }
 
     private fun startScan() {
@@ -126,7 +136,7 @@ class WiFiFragment : TCBaseFragment() {
                             WifiManager.WIFI_STATE_DISABLED -> {
                                 binding.tvOff.background =
                                     resources.getDrawable(R.drawable.bg_fac_success)
-                                stopTimer()
+                                stopJob()
                                 binding.rvWifi.adapter?.let {
                                     (it as WifiAdapter).apply {
                                         mData = arrayOf()
@@ -137,7 +147,7 @@ class WiFiFragment : TCBaseFragment() {
                             WifiManager.WIFI_STATE_ENABLED -> {
                                 binding.tvOn.background =
                                     resources.getDrawable(R.drawable.bg_fac_success)
-                                startTimer()
+                                startJob()
                             }
                         }
                     }
@@ -167,7 +177,7 @@ class WiFiFragment : TCBaseFragment() {
                         if (item.SSID.isNotEmpty()) {
                             filterList.add(item)
                         }
-                        if(item.SSID == tagetssid && wifiManager.connectionInfo.supplicantState != SupplicantState.COMPLETED){
+                        if (item.SSID == tagetssid && wifiManager.connectionInfo.supplicantState != SupplicantState.COMPLETED) {
                             connectToAP(tagetssid, resources.getString(R.string.pass))
                         }
                     }
@@ -179,8 +189,9 @@ class WiFiFragment : TCBaseFragment() {
                             ""
                         }
 
-                    if(connectSSID == tagetssid){
-                        binding.tvConnect.background = resources.getDrawable(R.drawable.bg_fac_success)
+                    if (connectSSID == tagetssid) {
+                        binding.tvConnect.background =
+                            resources.getDrawable(R.drawable.bg_fac_success)
                     }
 
                     mData = filterList.sortedBy { it.level }.reversed().toMutableList().apply {

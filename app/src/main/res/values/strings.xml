@@ -85,4 +85,6 @@
 
     <string name="ssid">LB_Guest_2.4G</string>
     <string name="pass">LBGuest4219!</string>
+
+    <string name="deviceid">MiraScreen BF679B55</string>
 </resources>

@@ -2,6 +2,7 @@ package com.litbig.engapp.testcase
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothDevice.BOND_BONDED
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -16,6 +17,10 @@ import com.litbig.engapp.R
 import com.litbig.engapp.databinding.FragmentTcBtBinding
 import com.litbig.engapp.utils.TCBaseFragment
 import com.litbig.engapp.utils.TestManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -31,8 +36,9 @@ class BTFragment : TCBaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
+//        startActivity(Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS));
         binding = FragmentTcBtBinding.inflate(inflater, container, false)
         binding.myInstance = this
         setMode(binding.result.id, TestManager.BT)
@@ -40,14 +46,20 @@ class BTFragment : TCBaseFragment() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter().apply {
             if (isEnabled) {
                 startDiscovery()
+                binding.tvOn.background =
+                    resources.getDrawable(R.drawable.bg_fac_success)
             }
             binding.btnOnOff.isChecked = isEnabled
         }
+
+        binding.tvGuide.text = resources.getString(R.string.deviceid)
 
         context?.let {
             it.registerReceiver(mReceiver,
                 IntentFilter().apply {
                     addAction(BluetoothDevice.ACTION_FOUND)
+                    addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED)
+                    addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)
                     addAction(BluetoothAdapter.ACTION_STATE_CHANGED)
                 })
         }
@@ -57,7 +69,9 @@ class BTFragment : TCBaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
+        context?.let {
+            it.unregisterReceiver(mReceiver)
+        }
     }
 
     fun onClick(view: View) {
@@ -80,15 +94,57 @@ class BTFragment : TCBaseFragment() {
                 BluetoothDevice.ACTION_FOUND -> {
                     val device =
                         intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
-                    mDeviceList.add("${device!!.name} :: ${device.address}")
-                    Log.i("BT", "${device.name} ${device.address}")
+                    device?.apply {
+                        val inputString = "$name :: $address"
+                        if (name != null) {
+                            mDeviceList.add(0, inputString)
+                        } else {
+                            mDeviceList.add(inputString)
+                        }
+                        Log.i("BT", inputString)
+                        if (name == resources.getString(R.string.deviceid)) {
+                            if (bondState != BOND_BONDED) {
+                                device.createBond()
+                            }
+                        }
+                        mBluetoothAdapter?.let {
+                            for(device in it.bondedDevices){
+                                if(device.name == resources.getString(R.string.deviceid)){
+                                    binding.tvBonded.background = resources.getDrawable(R.drawable.bg_fac_success)
+                                }
+                            }
+                        }
+                    }
                     binding.lvbt.adapter = context?.let {
                         ArrayAdapter(
                             it,
-                            android.R.layout.simple_list_item_1, mDeviceList
+                            android.R.layout.simple_list_item_1, mDeviceList.distinct()
                         )
                     }
                     binding.tvScan.background = resources.getDrawable(R.drawable.bg_fac_success)
+                }
+                "android.bluetooth.device.action.PAIRING_REQUEST" -> {
+                    Log.i("BT", "android.bluetooth.device.action.PAIRING_REQUEST")
+                }
+                BluetoothAdapter.ACTION_DISCOVERY_STARTED -> {
+                    Log.i("BT", "ACTION_DISCOVERY_STARTED")
+
+                    mDeviceList.clear()
+                    binding.lvbt.adapter = context?.let {
+                        ArrayAdapter(
+                            it,
+                            android.R.layout.simple_list_item_1, mDeviceList.distinct()
+                        )
+                    }
+                }
+                BluetoothAdapter.ACTION_DISCOVERY_FINISHED -> {
+                    Log.i("BT", "ACTION_DISCOVERY_FINISHED")
+                    mBluetoothAdapter?.let {
+                        CoroutineScope(Main).launch {
+                            delay(10 * 1000)
+                            it.startDiscovery()
+                        }
+                    }
                 }
                 BluetoothAdapter.ACTION_STATE_CHANGED -> {
                     val state =
@@ -107,5 +163,9 @@ class BTFragment : TCBaseFragment() {
                 }
             }
         }
+    }
+
+    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
+        super.startActivityForResult(intent, requestCode)
     }
 }
