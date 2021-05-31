@@ -54,7 +54,8 @@ class WiFiFragment : TCBaseFragment() {
         setMode(binding.result.id, TestManager.WIFI)
 
         binding.btnOnOff.isChecked = wifiManager.isWifiEnabled
-
+        binding.tvGuide.text =
+            "SSID : ${resources.getString(R.string.ssid)} PASS : ${resources.getString(R.string.pass)}"
         context?.let {
             binding.rvWifi.layoutManager = GridLayoutManager(it, 1)
             binding.rvWifi.adapter = WifiAdapter().also { adapter ->
@@ -159,11 +160,15 @@ class WiFiFragment : TCBaseFragment() {
         synchronized(this) {
             binding.rvWifi.adapter?.let { adapter ->
                 (adapter as WifiAdapter).apply {
+                    val tagetssid = resources.getString(R.string.ssid)
                     val results = wifiManager.scanResults.toMutableList()
                     val filterList = mutableListOf<ScanResult>()
                     for (item in results) {
                         if (item.SSID.isNotEmpty()) {
                             filterList.add(item)
+                        }
+                        if(item.SSID == tagetssid && wifiManager.connectionInfo.supplicantState != SupplicantState.COMPLETED){
+                            connectToAP(tagetssid, resources.getString(R.string.pass))
                         }
                     }
 
@@ -173,6 +178,10 @@ class WiFiFragment : TCBaseFragment() {
                         } else {
                             ""
                         }
+
+                    if(connectSSID == tagetssid){
+                        binding.tvConnect.background = resources.getDrawable(R.drawable.bg_fac_success)
+                    }
 
                     mData = filterList.sortedBy { it.level }.reversed().toMutableList().apply {
                         find {
@@ -262,9 +271,6 @@ class WiFiFragment : TCBaseFragment() {
                 wifiManager?.let {
                     it.isWifiEnabled = binding.btnOnOff.isChecked
                 }
-            }
-            binding.btnConnect -> {
-                connectToAP("LB_Guest_2.4G", "LBGuest4219!")
             }
         }
     }

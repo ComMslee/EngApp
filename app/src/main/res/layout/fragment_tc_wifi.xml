@@ -41,20 +41,12 @@
                     android:textOff="Off"
                     android:textOn="On" />
 
-                <Button
-                    android:id="@+id/btnConnect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{myInstance::onClick}"
-                    android:text="connnect"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
                 <TextView
+                    android:id="@+id/tvGuide"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SSID : LB_Guest_2.4G\nPASS : LBGuest4219!"
                     android:textColor="@color/btn_text_normal"
-                    android:textSize="@dimen/fac_text_normal_s" />
+                    android:textSize="@dimen/fac_text_normal_ss" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -99,6 +91,18 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="Scan"
+                    android:textColor="@color/btn_text_normal"
+                    android:textSize="@dimen/fac_text_normal_m" />
+
+                <TextView
+                    android:id="@+id/tvConnect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_fac_text"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Connect"
                     android:textColor="@color/btn_text_normal"
                     android:textSize="@dimen/fac_text_normal_m" />
             </androidx.appcompat.widget.LinearLayoutCompat>

@@ -83,7 +83,6 @@
 
     <string name="fact_led_tip">- 버튼밝기 슬라이드를 조작하며 전면부의 버튼 밝기를 확인합니다.</string>
 
-
     <string name="ssid">LB_Guest_2.4G</string>
-    <string name="pw">LBGuest4219!</string>
+    <string name="pass">LBGuest4219!</string>
 </resources>
