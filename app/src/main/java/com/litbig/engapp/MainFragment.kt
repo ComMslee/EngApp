@@ -79,7 +79,7 @@ class MainFragment() : Fragment() {
     }
 
     fun endTest() {
-        if (testManager.bMesterClear) {
+//        if (testManager.bMesterClear) {
             Intent("android.intent.action.MASTER_CLEAR").apply {
                 setPackage("android")
                 addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
@@ -89,9 +89,9 @@ class MainFragment() : Fragment() {
                     it.sendBroadcast(this)
                 }
             }
-        } else {
-
-        }
+//        } else {
+//
+//        }
         activity?.finish()
     }
 

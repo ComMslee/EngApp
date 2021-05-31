@@ -164,8 +164,4 @@ class BTFragment : TCBaseFragment() {
             }
         }
     }
-
-    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
-        super.startActivityForResult(intent, requestCode)
-    }
 }
