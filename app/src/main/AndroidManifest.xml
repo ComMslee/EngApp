@@ -9,10 +9,8 @@
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
     <uses-permission android:name="android.permission.MASTER_CLEAR" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature
@@ -24,7 +22,6 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -32,7 +29,6 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION " />
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
@@ -44,6 +40,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EngApp">
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
@@ -52,9 +49,20 @@
                 <action android:name="com.litbig.activity.engtest" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-                <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+                <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".LanguageActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="com.litbig.activity.language" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
     </application>
 
 </manifest>
