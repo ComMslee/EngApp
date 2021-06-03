@@ -117,8 +117,7 @@
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
                     android:text="DIP Switch"
-                    android:textSize="@dimen/fac_text_normal_m"
-                    android:visibility="invisible" />
+                    android:textSize="@dimen/fac_text_normal_m"/>
 
                 <Button
                     android:id="@+id/btnLVDS"
