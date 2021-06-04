@@ -38,7 +38,6 @@ class BTFragment : TCBaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-//        startActivity(Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS));
         binding = FragmentTcBtBinding.inflate(inflater, container, false)
         binding.myInstance = this
         setMode(binding.result.id, TestManager.BT)
@@ -85,6 +84,9 @@ class BTFragment : TCBaseFragment() {
                     }
                 }
             }
+            binding.btnConnect -> {
+                startActivity(Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS));
+            }
         }
     }
 
@@ -102,18 +104,18 @@ class BTFragment : TCBaseFragment() {
                             mDeviceList.add(inputString)
                         }
                         Log.i("BT", inputString)
-                        if (name == resources.getString(R.string.deviceid)) {
-                            if (bondState != BOND_BONDED) {
-                                device.createBond()
-                            }
-                        }
-                        mBluetoothAdapter?.let {
-                            for(device in it.bondedDevices){
-                                if(device.name == resources.getString(R.string.deviceid)){
-                                    binding.tvBonded.background = resources.getDrawable(R.drawable.bg_fac_success)
-                                }
-                            }
-                        }
+//                        if (name == resources.getString(R.string.deviceid)) {
+//                            if (bondState != BOND_BONDED) {
+//                                device.createBond()
+//                            }
+//                        }
+//                        mBluetoothAdapter?.let {
+//                            for(device in it.bondedDevices){
+//                                if(device.name == resources.getString(R.string.deviceid)){
+//                                    binding.tvBonded.background = resources.getDrawable(R.drawable.bg_fac_success)
+//                                }
+//                            }
+//                        }
                     }
                     binding.lvbt.adapter = context?.let {
                         ArrayAdapter(
