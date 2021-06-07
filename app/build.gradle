@@ -8,10 +8,10 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('Z:\\AddonBox\\nv-x8\\app_platform_key\\platform.jks')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            storeFile file('Z:\\H-LAB\\avn_tcc803x_android_pie\\build\\make\\target\\product\\security\\platform.jks')
+            storePassword '123456'
+            keyAlias 'mykeystore'
+            keyPassword '123456'
         }
     }
 
