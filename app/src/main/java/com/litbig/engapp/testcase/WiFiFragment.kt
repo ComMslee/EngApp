@@ -26,7 +26,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class WiFiFragment : TCBaseFragment() {
+class WiFiFragment : TCBaseFragment() { //test
     lateinit var binding: FragmentTcWifiBinding
     lateinit var wifiManager: WifiManager
     var job: Job? = null
