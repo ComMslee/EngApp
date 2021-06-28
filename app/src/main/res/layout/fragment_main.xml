@@ -21,7 +21,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
+            android:background="#000000"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,13 +36,61 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnGPS"
+                    android:id="@+id/btnLCD"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="GPS"
+                    android:text="LCD"
+                    android:textSize="@dimen/fac_text_normal_m" />
+
+                <Button
+                    android:id="@+id/btnTouch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
+                    android:text="Touch"
+                    android:textSize="@dimen/fac_text_normal_m" />
+
+                <Button
+                    android:id="@+id/btnDisk"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
+                    android:text="Disk"
+                    android:textSize="@dimen/fac_text_normal_m" />
+
+                <Button
+                    android:id="@+id/btnHWKey"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
+                    android:text="HWKey"
+                    android:textSize="@dimen/fac_text_normal_m" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSpeaker"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
+                    android:text="Speaker"
                     android:textSize="@dimen/fac_text_normal_m" />
 
                 <Button
@@ -56,14 +104,25 @@
                     android:textSize="@dimen/fac_text_normal_m" />
 
                 <Button
-                    android:id="@+id/btnSpeaker"
+                    android:id="@+id/btnGPS"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="Speaker"
+                    android:text="GPS"
                     android:textSize="@dimen/fac_text_normal_m" />
+
+                <Button
+                    android:id="@+id/btnRadio"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
+                    android:text="Radio"
+                    android:textSize="@dimen/fac_text_normal_m" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -73,13 +132,23 @@
                 android:gravity="center">
 
                 <Button
-                    android:id="@+id/btnDisk"
+                    android:id="@+id/btnDAB"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="Disk"
+                    android:text="DAB"
+                    android:textSize="@dimen/fac_text_normal_m" />
+
+                <Button
+                    android:id="@+id/btnAux"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
+                    android:text="Aux"
                     android:textSize="@dimen/fac_text_normal_m" />
 
                 <Button
@@ -110,23 +179,31 @@
                 android:gravity="center">
 
                 <Button
-                    android:id="@+id/btnDipSwitch"
+                    android:id="@+id/btnCamera"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="DIP Switch"
-                    android:textSize="@dimen/fac_text_normal_m"/>
+                    android:text="Camera"
+                    android:textSize="@dimen/fac_text_normal_m" />
 
                 <Button
-                    android:id="@+id/btnLVDS"
+                    android:id="@+id/btnSensor"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:onClick="@{myInstance::onClick}"
-                    android:text="LVDS"
+                    android:text="Sensor"
+                    android:textSize="@dimen/fac_text_normal_m" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{myInstance::onClick}"
                     android:textSize="@dimen/fac_text_normal_m"
                     android:visibility="invisible" />
 
@@ -143,17 +220,31 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="120dp"
+            android:layout_width="130dp"
             android:layout_height="0dp"
+            android:layout_marginRight="10dp"
+            android:background="#000000"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tvInfo"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0" />
+                android:layout_weight="2"
+                android:textColor="@color/btn_text_normal" />
+
+            <ImageView
+                android:id="@+id/ivBarCode"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:layout_width="match_parent"
@@ -161,6 +252,7 @@
                 android:layout_weight="1"
                 android:onClick="@{()->myInstance.endTest()}"
                 android:text="Finish"
+                android:textAllCaps="false"
                 android:textSize="@dimen/fac_text_normal_m" />
         </LinearLayout>
 

@@ -111,5 +111,4 @@ class DipSwitchFragment : TCBaseFragment() {
         }
         return ""
     }
-
 }

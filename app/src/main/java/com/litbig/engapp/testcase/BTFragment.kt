@@ -2,7 +2,6 @@ package com.litbig.engapp.testcase
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothDevice.BOND_BONDED
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -49,6 +48,7 @@ class BTFragment : TCBaseFragment() {
                     resources.getDrawable(R.drawable.bg_fac_success)
             }
             binding.btnOnOff.isChecked = isEnabled
+
         }
 
         binding.tvGuide.text = resources.getString(R.string.deviceid)

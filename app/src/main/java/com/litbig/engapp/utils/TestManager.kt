@@ -1,5 +1,9 @@
 package com.litbig.engapp.utils
 
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import kotlin.properties.Delegates
+
 class TestManager {
     companion object {
         val GPS = "gps"
@@ -10,8 +14,19 @@ class TestManager {
         val BT = "bt"
         val LVDS = "lvds"
         val DIP = "dip"
+
+        val LCD = "lcd"
+        val TOUCH = "touch"
+        val HWKEY = "hwkey"
+        val RADIO = "radio"
+        val DAB = "dab"
+        val AUX = "aux"
+        val CAMERA = "camera"
+        val SENSOR = "sensor"
     }
 
-    var bMesterClear = false
     val map = mutableMapOf<String, Boolean>()
+    val systemInfo = SystemInfo()
+
+    val update = MutableLiveData<Int>()
 }

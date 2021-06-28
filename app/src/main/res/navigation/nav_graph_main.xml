@@ -64,7 +64,9 @@
         android:id="@+id/wiFiFragment"
         android:name="com.litbig.engapp.testcase.WiFiFragment"
         android:label="WiFiFragment" />
-    <action android:id="@+id/action_global_mainFragment" app:destination="@id/mainFragment" />
+    <action
+        android:id="@+id/action_global_mainFragment"
+        app:destination="@id/mainFragment" />
     <fragment
         android:id="@+id/BTFragment"
         android:name="com.litbig.engapp.testcase.BTFragment"
